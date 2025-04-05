@@ -21,6 +21,24 @@ app.get("/", (_, res) => {
   });
 });
 
+app.get("/random", (_, res) => {
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+  if (randomNumber % 2 === 0) {
+    res.status(200).json({
+      message: "Even number generated!",
+      randomNumber,
+      status: 200,
+    });
+  } else {
+    res.status(500).json({
+      message: "Odd number generated!",
+      randomNumber,
+      status: 500,
+    });
+  }
+});
+
 app.post("/check", async (req, res) => {
   const { body, header, method = "GET", url, timeout = 60, urlId } = req.body;
   try {
